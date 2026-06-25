@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply font-sans antialiased transition-colors duration-200;
+  }
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  @apply backdrop-blur-md border;
+  background-color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-panel {
+  background-color: rgba(15, 15, 20, 0.55);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-zinc-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-zinc-600;
+}
+
+/* Page transitions */
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+ENV/
+env/
+
+# Backend temporary data & database fallbacks
+*.json
+!frontend/package.json
+!frontend/package-lock.json
+!frontend/.oxlintrc.json
+academia_crm_data.json
+backend/academia_crm_data.json
+
+# Environment variables
+.env
+.env.*
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# OS-specific
+.DS_Store
+Thumbs.db
