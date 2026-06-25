@@ -216,19 +216,19 @@ def chat_assistant(req: ChatRequest, current_user: dict = Depends(get_current_us
     
     # Simple semantic router
     if "how many institutions" in msg or "total college" in msg or "total lead" in msg:
-        count = len(inst_coll.find())
+        count = len(list(inst_coll.find()))
         reply = f"We currently have **{count} institutions** registered in the CRM."
     elif "won" in msg or "closed won" in msg or "deal closed" in msg:
-        won_insts = inst_coll.find({"lead_status": "Closed Won"})
+        won_insts = list(inst_coll.find({"lead_status": "Closed Won"}))
         count = len(won_insts)
         colleges = ", ".join([x.get("college_name") for x in won_insts])
         reply = f"We have secured **{count} Closed Won deals**. {"The successful partnerships are: " + colleges + "." if count > 0 else "We are working on closing our first deals!"}"
     elif "revenue" in msg or "sales figure" in msg or "made" in msg:
-        proposals = proposals_coll.find({"proposal_status": "Accepted"})
+        proposals = list(proposals_coll.find({"proposal_status": "Accepted"}))
         revenue = sum(p.get("proposal_amount", 0) for p in proposals)
         reply = f"Our current closed-won revenue is **${revenue:,.2f}** from accepted proposals."
     elif "meeting" in msg or "schedule" in msg:
-        meetings = meetings_coll.find({"status": "Scheduled"})
+        meetings = list(meetings_coll.find({"status": "Scheduled"}))
         count = len(meetings)
         reply = f"There are **{count} upcoming meetings** scheduled in the calendar."
     else:
